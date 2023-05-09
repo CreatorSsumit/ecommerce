@@ -10,10 +10,10 @@ const handler = async (req, res) => {
   }
 
   if (method === "PUT") {
-    console.log(req.body);
+    const { name, parentId } = req.body.data;
     let resp = await CategoriesSchema.findOneAndUpdate(
       { _id: req.query.editCategories },
-      { name: req.body.data },
+      { name, parentId },
       {
         new: true,
       }

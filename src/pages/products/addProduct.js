@@ -30,8 +30,6 @@ function addProduct() {
     setLoadingState(true);
     const files = e?.target?.files;
 
-    console.log(e, files);
-
     if (files?.length > 0) {
       const data = new FormData();
 

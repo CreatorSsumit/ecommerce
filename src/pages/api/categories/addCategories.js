@@ -3,11 +3,12 @@ import MongooseConnect from "@/pages/mongo_config/mongoose";
 
 const handler = async (req, res) => {
   const { method } = req;
-  const { name } = req.body;
+  const { name, parentId } = req.body;
   await MongooseConnect();
   if (method === "POST") {
     CategoriesSchema.create({
       name,
+      parentId,
     })
       .then((e) => {
         res.json(e);

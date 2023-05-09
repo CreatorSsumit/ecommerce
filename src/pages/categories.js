@@ -9,6 +9,9 @@ function Categories() {
   const [categoriesName, setcategoriesName] = useState("");
   const [categoriesState, setCategoriesState] = useState([]);
   const [loadingState, setLoadingState] = useState(false);
+  const [editModal, seteditModal] = useState(false);
+  const [data, setData] = useState({});
+  const [selectedValue, setselectedValue] = useState("");
 
   useEffect(() => {
     loadCategoriesState();
@@ -19,6 +22,7 @@ function Categories() {
       setCategoriesState(e?.data?.reverse());
       setLoadingState(false);
       setcategoriesName("");
+      setselectedValue("");
     });
   };
 
@@ -26,7 +30,10 @@ function Categories() {
     e.preventDefault();
     setLoadingState(true);
     axios
-      .post("/api/categories/addCategories", { name: categoriesName })
+      .post("/api/categories/addCategories", {
+        name: categoriesName,
+        parentId: selectedValue ? selectedValue : null,
+      })
       .then(() => {
         loadCategoriesState();
       });
@@ -39,6 +46,13 @@ function Categories() {
     });
   };
 
+  const onCancel = () => {
+    seteditModal(false);
+  };
+  const onChangeSelectedValue = (e) => {
+    setselectedValue(e.target.value);
+  };
+
   return (
     <Layout>
       <div className="w-full p-6">
@@ -48,23 +62,45 @@ function Categories() {
         <br />
         <form onSubmit={handleSubmit}>
           <h6 className="text-sm text-gray-600">Categories Name </h6>
-          <input
-            onChange={(e) => setcategoriesName(e.target.value)}
-            name="categoriesName"
-            value={categoriesName}
-            disabled={loadingState}
-            required
-            placeholder="Enter Categories"
-            className="bg-slate-100 my-2 px-4 w-full py-2 text-sm focus:border-blue-500 rounded placeholder:text-gray-800"
-          />
-          <br /> <br />
-          <button
-            type="submit"
-            disabled={loadingState}
-            className={`bg-black text-white p-2 rounded w-40 hover:bg-slate-800`}
-          >
-            Save
-          </button>
+          <div className="w-full flex justify-between">
+            <div className="w-full flex">
+              <input
+                onChange={(e) => setcategoriesName(e.target.value)}
+                name="categoriesName"
+                value={categoriesName}
+                disabled={loadingState}
+                required
+                placeholder="Enter Categories"
+                className="bg-slate-100 my-2 px-4 w-full py-2 text-sm focus:border-blue-500 rounded placeholder:text-gray-800"
+              />
+              <select
+                className="w-36 bg-slate-100 m-2 p-2 rounded"
+                value={selectedValue}
+                onChange={(e) => onChangeSelectedValue(e)}
+              >
+                <option className="text-sm" value={""}>
+                  Please Select
+                </option>
+                {categoriesState?.length !== 0 &&
+                  categoriesState?.map(({ name, _id }) => {
+                    return (
+                      <>
+                        <option className="text-sm" value={_id}>
+                          {name}
+                        </option>
+                      </>
+                    );
+                  })}
+              </select>
+            </div>
+            <button
+              type="submit"
+              disabled={loadingState}
+              className={`bg-black text-white  rounded w-40 hover:bg-slate-800 m-2`}
+            >
+              Save
+            </button>
+          </div>
         </form>
         <br />
         <h6 className="text-sm text-gray-600">Existing Categories ~</h6>
@@ -78,17 +114,20 @@ function Categories() {
               <td className="p-4 rounded-l  w-full ">Categories Name</td>
             </thead>
             <tbody className="mt-10">
-              {categoriesState?.map(({ name, _id }) => {
+              {categoriesState?.map(({ name, _id, parentId }) => {
                 return (
                   <>
                     <tr className="bg-slate-50 my-3 ">
                       <td className="p-3">{name}</td>
                       <td className="p-3 flex">
-                        <Link
+                        <button
                           type="button"
                           // data-te-ripple-color="light"
                           title="Edit"
-                          href={`/editCategories/${_id}`}
+                          onClick={() => {
+                            seteditModal(true);
+                            setData({ name, _id, parentId });
+                          }}
                         >
                           <svg
                             fill="none"
@@ -103,7 +142,7 @@ function Categories() {
                           >
                             <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
                           </svg>
-                        </Link>
+                        </button>
                         <button
                           title="Delete"
                           // href={`/products/deleteProducts/`}
@@ -139,8 +178,14 @@ function Categories() {
           </h6>
         )}
       </div>
-
-      <CategoriesEditModal />
+      {editModal && (
+        <CategoriesEditModal
+          onCancel={onCancel}
+          data={data}
+          loadCategoriesState={loadCategoriesState}
+          categoriesState={categoriesState}
+        />
+      )}
     </Layout>
   );
 }

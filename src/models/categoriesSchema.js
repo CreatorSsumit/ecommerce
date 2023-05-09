@@ -1,7 +1,8 @@
-const { Schema, model, models } = require("mongoose");
+const { Schema, model, models, default: mongoose } = require("mongoose");
 
 const Schemamodel = new Schema({
   name: String,
+  parentId: { type: mongoose.Schema.Types.ObjectId },
 });
 
 export const CategoriesSchema =
