@@ -6,6 +6,6 @@ export default async function handler(req, res) {
   const { method } = req;
 
   if (method === "GET") {
-    res.status(200).json(await productSchema.find());
+    res.status(200).json(await productSchema.find().populate("categories"));
   }
 }

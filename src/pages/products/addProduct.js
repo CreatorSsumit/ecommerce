@@ -1,19 +1,34 @@
 import Layout from "@/components/Layout";
 import axios from "axios";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormLayout from "./formLayout";
 
 function addProduct() {
   const [productState, setproductState] = useState({});
   const [loadingState, setLoadingState] = useState(false);
+  const [categoriesState, setCategoriesState] = useState([]);
+
   const router = useRouter();
+
+  useEffect(() => {
+    loadCategoriesState();
+  }, []);
+
+  const loadCategoriesState = () => {
+    axios.get("/api/categories/addCategories").then((e) => {
+      setCategoriesState(e?.data?.reverse());
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     let res = await axios.post("/api/products/addProduct", {
-      data: productState,
+      data: {
+        ...productState,
+        categories: productState?.categories ? productState?.categories : null,
+      },
     });
     if (res?.data) {
       router.push("/products");
@@ -67,6 +82,7 @@ function addProduct() {
         handleUploadImage={handleUploadImage}
         skeletonLoading={loadingState}
         setImagesOrder={setImagesOrder}
+        categoriesState={categoriesState}
       />
     </Layout>
   );

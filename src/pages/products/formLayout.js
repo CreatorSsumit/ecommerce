@@ -13,11 +13,12 @@ function FormLayout({
   handleUploadImage,
   skeletonLoading,
   setImagesOrder,
+  categoriesState,
 }) {
   const router = useRouter();
 
   const pimage = useMemo(() => productState?.image, [productState?.image]);
-
+  console.log(productState);
   return (
     <div className="w-full p-6">
       <span className="flex">
@@ -45,16 +46,38 @@ function FormLayout({
         className={skeletonLoading && "animate-pulse"}
       >
         <h6 className="text-sm text-gray-600">Product Name </h6>
-        <input
-          onChange={handleOnChange}
-          name="productName"
-          value={productState?.productName}
-          disabled={skeletonLoading}
-          required
-          placeholder="Enter Product Name"
-          className="bg-slate-100 my-2 px-4 w-full py-2 text-sm focus:border-blue-500 rounded placeholder:text-gray-800"
-        />
-        <br /> <br />
+        <div className="flex">
+          <input
+            onChange={handleOnChange}
+            name="productName"
+            value={productState?.productName}
+            disabled={skeletonLoading}
+            required
+            placeholder="Enter Product Name"
+            className="bg-slate-100 my-2 px-4 w-full py-2 text-sm focus:border-blue-500 rounded placeholder:text-gray-800"
+          />
+          <select
+            className="w-56 bg-slate-100 m-2 p-2 rounded text-xs "
+            value={productState?.categories}
+            name="categories"
+            onChange={(e) => handleOnChange(e)}
+          >
+            <option className="" value={""}>
+              Please Select Categories
+            </option>
+            {categoriesState?.length !== 0 &&
+              categoriesState?.map(({ name, _id }) => {
+                return (
+                  <>
+                    <option className="text-sm" value={_id}>
+                      {name}
+                    </option>
+                  </>
+                );
+              })}
+          </select>
+        </div>
+        <br />
         <h6 className="text-sm text-gray-600">Product Descriptions </h6>
         <textarea
           name="productDescription"

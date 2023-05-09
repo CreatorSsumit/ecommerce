@@ -7,15 +7,30 @@ import { useRouter } from "next/router";
 function EditProduct() {
   const [productState, setproductState] = useState({});
   const [loadingState, setLoadingState] = useState(false);
+  const [categoriesState, setCategoriesState] = useState([]);
+
   const router = useRouter();
+
+  const loadCategoriesState = () => {
+    axios.get("/api/categories/addCategories").then((e) => {
+      setCategoriesState(e?.data?.reverse());
+    });
+  };
 
   useEffect(() => {
     if (router.query.editProduct) {
+      loadCategoriesState();
       axios
         .get(`/api/products/editProducts/${router.query.editProduct}`)
         .then(
           ({
-            data: { productName, productDescription, productPrice, image },
+            data: {
+              productName,
+              productDescription,
+              productPrice,
+              image,
+              categories,
+            },
           }) => {
             setproductState((prev) => ({
               ...prev,
@@ -23,6 +38,7 @@ function EditProduct() {
               productDescription,
               productPrice,
               image,
+              categories,
             }));
           }
         );
@@ -63,7 +79,12 @@ function EditProduct() {
     e.preventDefault();
     axios
       .put(`/api/products/editProducts/${router.query.editProduct}`, {
-        data: productState,
+        data: {
+          ...productState,
+          categories: productState?.categories
+            ? productState?.categories
+            : null,
+        },
       })
       .then((e) => {
         router.push("/products");
@@ -87,6 +108,7 @@ function EditProduct() {
         handleUploadImage={handleUploadImage}
         skeletonLoading={loadingState}
         setImagesOrder={setImagesOrder}
+        categoriesState={categoriesState}
       />
     </Layout>
   );

@@ -111,9 +111,12 @@ function Categories() {
             } text-sm w-full rounded my-3 bg-slate-400`}
           >
             <thead className="rounded  overflow-hidden">
-              <td className="p-4 w-full bg-slate-300">Categories Name</td>
-              <td className="p-4 w-full bg-slate-400">Parent Id</td>
-              <td className="p-4 w-full bg-slate-500 ">Action</td>
+              <td className="p-4 w-full bg-slate-200">Categories Name</td>
+              <td className="p-4 w-20  bg-slate-300">Parent Id</td>
+              <td className="p-4  w-full  bg-slate-200">
+                <span className="flex whitespace-nowrap">Parent Name</span>
+              </td>
+              <td className="p-4 w-full  bg-slate-200 ">Action</td>
             </thead>
             <tbody className="mt-10">
               {categoriesState?.map(({ name, _id, parentId }) => {
@@ -126,6 +129,8 @@ function Categories() {
                           {parentId?._id || "Not Available"}
                         </span>
                       </td>
+
+                      <td className="p-3">{parentId?.name}</td>
                       <td className="p-3 flex">
                         <button
                           type="button"

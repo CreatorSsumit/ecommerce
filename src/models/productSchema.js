@@ -1,4 +1,5 @@
 import mongoose, { Schema, model } from "mongoose";
+import { CategoriesSchema } from "./categoriesSchema";
 
 var pSchema = new Schema(
   {
@@ -6,6 +7,10 @@ var pSchema = new Schema(
     productDescription: String,
     productPrice: Number,
     image: Array,
+    categories: {
+      type: mongoose.Types.ObjectId,
+      ref: CategoriesSchema.modelName,
+    },
   },
   { timestamps: true }
 );

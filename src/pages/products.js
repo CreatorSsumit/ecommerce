@@ -71,6 +71,7 @@ function Products(props) {
             <td className="p-4 rounded-l">Product Name</td>
             <td className="p-4">Product Descriptions</td>
             <td className="p-4 ">Product Price</td>
+            <td className="p-4 ">Categories</td>
             <td className="p-4 rounded-r ">Action</td>
           </thead>
           <tbody className="mt-10">
@@ -80,6 +81,7 @@ function Products(props) {
                   <td className="p-3">{data.productName}</td>
                   <td className="p-3">{data.productDescription}</td>
                   <td className="p-3">{data.productPrice}</td>
+                  <td className="p-3">{data?.categories?.name}</td>
                   <td className="p-3 flex">
                     <Link
                       title="Edit"

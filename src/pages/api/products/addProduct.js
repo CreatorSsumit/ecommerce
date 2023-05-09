@@ -4,7 +4,7 @@ import MongooseConnect from "@/pages/mongo_config/mongoose";
 export default async function handler(req, res) {
   const { method } = req;
   const {
-    data: { productName, productDescription, productPrice, image },
+    data: { productName, productDescription, productPrice, image, categories },
   } = req.body;
   await MongooseConnect();
 
@@ -15,6 +15,7 @@ export default async function handler(req, res) {
         productDescription,
         productPrice,
         image,
+        categories,
       })
       .then((e) => {
         res.status(200).json(e);
