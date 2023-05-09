@@ -108,10 +108,12 @@ function Categories() {
           <table
             className={`${
               loadingState && "animate-pulse"
-            } text-sm w-full rounded my-3 bg-slate-200`}
+            } text-sm w-full rounded my-3 bg-slate-400`}
           >
-            <thead className=" rounded  overflow-hidden">
-              <td className="p-4 rounded-l  w-full ">Categories Name</td>
+            <thead className="rounded  overflow-hidden">
+              <td className="p-4 w-full bg-slate-300">Categories Name</td>
+              <td className="p-4 w-full bg-slate-400">Parent Id</td>
+              <td className="p-4 w-full bg-slate-500 ">Action</td>
             </thead>
             <tbody className="mt-10">
               {categoriesState?.map(({ name, _id, parentId }) => {
@@ -119,6 +121,11 @@ function Categories() {
                   <>
                     <tr className="bg-slate-50 my-3 ">
                       <td className="p-3">{name}</td>
+                      <td className="p-3 font-thin">
+                        <span className="flex">
+                          {parentId?._id || "Not Available"}
+                        </span>
+                      </td>
                       <td className="p-3 flex">
                         <button
                           type="button"

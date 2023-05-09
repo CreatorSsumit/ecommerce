@@ -10,7 +10,9 @@ function CategoriesEditModal({
 }) {
   const [categoriesName, setcategoriesName] = useState(data?.name || "");
   const [loadingState, setLoadingState] = useState(false);
-  const [selectedValue, setselectedValue] = useState(data?.parentId || null);
+  const [selectedValue, setselectedValue] = useState(
+    data?.parentId?._id || null
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();

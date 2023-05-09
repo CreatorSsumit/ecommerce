@@ -18,7 +18,7 @@ const handler = async (req, res) => {
       });
   }
   if (method === "GET") {
-    const resp = await CategoriesSchema.find();
+    const resp = await CategoriesSchema.find().populate("parentId");
     if (resp) {
       res.json(resp);
     }
