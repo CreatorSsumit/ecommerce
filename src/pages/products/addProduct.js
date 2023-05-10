@@ -107,6 +107,13 @@ function addProduct() {
     }, 1000);
   };
 
+  const handleDeleteProductList = (index) => {
+    setproductState((prev) => ({
+      ...prev,
+      propertyList: prev?.propertyList?.filter((e, i) => i !== index) || [],
+    }));
+  };
+
   return (
     <Layout>
       <FormLayout
@@ -119,6 +126,7 @@ function addProduct() {
         setImagesOrder={setImagesOrder}
         categoriesState={categoriesState}
         addProperty={addProperty}
+        handleDeleteProductList={handleDeleteProductList}
       />
     </Layout>
   );

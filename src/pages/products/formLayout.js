@@ -15,6 +15,7 @@ function FormLayout({
   setImagesOrder,
   categoriesState,
   addProperty,
+  handleDeleteProductList,
 }) {
   const router = useRouter();
 
@@ -103,7 +104,10 @@ function FormLayout({
                   placeholder="Enter Property Value"
                   className="bg-slate-100 my-2 px-4 w-full py-2 text-sm focus:border-blue-500 rounded placeholder:text-gray-800"
                 />
-                <button className="p-2  text-white text-sm py-2 my-2 rounded bg-black hover:bg-slate-700">
+                <button
+                  onClick={() => handleDeleteProductList(index)}
+                  className="p-2  text-white text-sm py-2 my-2 rounded bg-black hover:bg-slate-700"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -127,6 +131,7 @@ function FormLayout({
           className="p-2 px-5 bg-gray-900 rounded text-sm text-white hover:bg-gray-700 flex gap-3 items-center"
           type="button"
           onClick={addProperty}
+          disabled={skeletonLoading}
         >
           {skeletonLoading && (
             <svg

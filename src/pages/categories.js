@@ -74,11 +74,11 @@ function Categories() {
                 className="bg-slate-100 my-2 px-4 w-full py-2 text-sm focus:border-blue-500 rounded placeholder:text-gray-800"
               />
               <select
-                className="w-36 bg-slate-100 m-2 p-2 rounded"
+                className="w-36 bg-slate-100 m-2 p-2 rounded text-xs"
                 value={selectedValue}
                 onChange={(e) => onChangeSelectedValue(e)}
               >
-                <option className="text-sm" value={""}>
+                <option className="" value={""}>
                   Please Select
                 </option>
                 {categoriesState?.length !== 0 &&
