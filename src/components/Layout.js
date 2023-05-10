@@ -27,9 +27,11 @@ function Layout({ children }) {
 
   return (
     <>
-      <div className="bg-slate-900 w-full flex">
+      <div className="bg-slate-900 h-full flex">
         <Navigation />
-        <div className="bg-white w-full  rounded-md m-3 p-3 ">{children}</div>
+        <div className="bg-white w-full h-screen  rounded-md m-3 p-3 ">
+          {children}
+        </div>
         {/* <button onClick={signOut}>logout</button>{" "} */}
       </div>
     </>
