@@ -30,6 +30,7 @@ function EditProduct() {
               productPrice,
               image,
               categories,
+              propertyList,
             },
           }) => {
             setproductState((prev) => ({
@@ -39,6 +40,7 @@ function EditProduct() {
               productPrice,
               image,
               categories,
+              propertyList,
             }));
           }
         );
@@ -47,8 +49,31 @@ function EditProduct() {
     }
   }, [router.query.editProduct]);
 
-  const handleOnChange = (e) => {
-    setproductState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleOnChange = (e, index) => {
+    const { name, value } = e.target;
+
+    if (name === "attributeKey") {
+      setproductState((prev) => {
+        prev.propertyList[index] = { ...prev.propertyList[index], key: value };
+        return {
+          ...prev,
+          propertyList: [...prev?.propertyList],
+        };
+      });
+    } else if (name === "attributeValue") {
+      setproductState((prev) => {
+        prev.propertyList[index] = {
+          ...prev.propertyList[index],
+          value: value,
+        };
+        return {
+          ...prev,
+          propertyList: [...prev?.propertyList],
+        };
+      });
+    } else {
+      setproductState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    }
   };
 
   const handleUploadImage = async (e) => {
@@ -98,6 +123,18 @@ function EditProduct() {
     }));
   };
 
+  const addProperty = () => {
+    var obj = { key: "", value: "" };
+    setLoadingState(true);
+    setproductState((prev) => ({
+      ...prev,
+      propertyList: [...prev?.propertyList, obj],
+    }));
+    setTimeout(() => {
+      setLoadingState(false);
+    }, 1000);
+  };
+
   return (
     <Layout>
       <FormLayout
@@ -109,6 +146,7 @@ function EditProduct() {
         skeletonLoading={loadingState}
         setImagesOrder={setImagesOrder}
         categoriesState={categoriesState}
+        addProperty={addProperty}
       />
     </Layout>
   );

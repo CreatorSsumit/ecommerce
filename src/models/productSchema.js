@@ -7,6 +7,7 @@ var pSchema = new Schema(
     productDescription: String,
     productPrice: Number,
     image: Array,
+    propertyList: { type: [{}] },
     categories: {
       type: mongoose.Types.ObjectId,
       ref: CategoriesSchema.modelName,

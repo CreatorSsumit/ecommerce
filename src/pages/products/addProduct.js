@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import FormLayout from "./formLayout";
 
 function addProduct() {
-  const [productState, setproductState] = useState({});
+  const [productState, setproductState] = useState({ propertyList: [] });
   const [loadingState, setLoadingState] = useState(false);
   const [categoriesState, setCategoriesState] = useState([]);
 
@@ -37,8 +37,31 @@ function addProduct() {
     }
   };
 
-  const handleOnChange = (e) => {
-    setproductState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleOnChange = (e, index) => {
+    const { name, value } = e.target;
+
+    if (name === "attributeKey") {
+      setproductState((prev) => {
+        prev.propertyList[index] = { ...prev.propertyList[index], key: value };
+        return {
+          ...prev,
+          propertyList: [...prev?.propertyList],
+        };
+      });
+    } else if (name === "attributeValue") {
+      setproductState((prev) => {
+        prev.propertyList[index] = {
+          ...prev.propertyList[index],
+          value: value,
+        };
+        return {
+          ...prev,
+          propertyList: [...prev?.propertyList],
+        };
+      });
+    } else {
+      setproductState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    }
   };
 
   const handleUploadImage = async (e) => {
@@ -72,6 +95,18 @@ function addProduct() {
     }));
   };
 
+  const addProperty = () => {
+    var obj = { key: "", value: "" };
+    setLoadingState(true);
+    setproductState((prev) => ({
+      ...prev,
+      propertyList: [...prev?.propertyList, obj],
+    }));
+    setTimeout(() => {
+      setLoadingState(false);
+    }, 1000);
+  };
+
   return (
     <Layout>
       <FormLayout
@@ -83,6 +118,7 @@ function addProduct() {
         skeletonLoading={loadingState}
         setImagesOrder={setImagesOrder}
         categoriesState={categoriesState}
+        addProperty={addProperty}
       />
     </Layout>
   );
