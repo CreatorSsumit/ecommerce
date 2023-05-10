@@ -1,8 +1,6 @@
 import CategoriesEditModal from "@/components/CategoriesEditModal";
 import Layout from "@/components/Layout";
 import axios from "axios";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 function Categories() {

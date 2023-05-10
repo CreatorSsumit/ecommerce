@@ -1,7 +1,5 @@
 import MongooseConnect from "@/pages/mongo_config/mongoose";
-import multiparty from "multiparty";
 import multer from "multer";
-import Cors from "cors";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

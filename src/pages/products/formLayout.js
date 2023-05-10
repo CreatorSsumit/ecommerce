@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useMemo } from "react";
 import { ReactSortable } from "react-sortablejs";
-// import fs from "fs";
 
 import Image from "next/image";
 
