@@ -80,7 +80,7 @@ function Products(props) {
                 <tr className="bg-slate-50 my-3">
                   <td className="p-3">{data.productName}</td>
                   <td className="p-3">{data.productDescription}</td>
-                  <td className="p-3">{data.productPrice}</td>
+                  <td className="p-3">${data.productPrice}</td>
                   <td className="p-3">{data?.categories?.name}</td>
                   <td className="p-3 flex">
                     <Link
