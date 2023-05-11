@@ -1,8 +1,9 @@
 const { Schema, model, models, default: mongoose } = require("mongoose");
 
 const Schemamodel = new Schema({
-  name: String,
+  categoriesName: String,
   parentId: { type: mongoose.Schema.Types.ObjectId, ref: "CategoriesSchema" },
+  attributeList: { type: [{}] },
 });
 
 export const CategoriesSchema =

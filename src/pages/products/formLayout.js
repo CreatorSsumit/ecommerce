@@ -19,7 +19,7 @@ function FormLayout({
   const router = useRouter();
 
   const pimage = useMemo(() => productState?.image, [productState?.image]);
-  console.log(productState);
+
   return (
     <div className="w-full p-6">
       <span className="flex">
@@ -67,11 +67,11 @@ function FormLayout({
               Please Select Categories
             </option>
             {categoriesState?.length !== 0 &&
-              categoriesState?.map(({ name, _id }) => {
+              categoriesState?.map(({ categoriesName, _id }) => {
                 return (
                   <>
                     <option className="text-sm" value={_id}>
-                      {name}
+                      {categoriesName}
                     </option>
                   </>
                 );
