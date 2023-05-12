@@ -105,6 +105,7 @@ function FormLayout({
                 />
                 <button
                   onClick={() => handleDeleteProductList(index)}
+                  type="button"
                   className="p-2  text-white text-sm py-2 my-2 rounded bg-black hover:bg-slate-700"
                 >
                   <svg

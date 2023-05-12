@@ -59,6 +59,15 @@ function addProduct() {
           propertyList: [...prev?.propertyList],
         };
       });
+    } else if (name === "categories") {
+      let { attributeList } =
+        categoriesState.find((e) => e?._id === value) || [];
+
+      setproductState((prev) => ({
+        ...prev,
+        propertyList: attributeList,
+        [e.target.name]: e.target.value,
+      }));
     } else {
       setproductState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
@@ -113,6 +122,8 @@ function addProduct() {
       propertyList: prev?.propertyList?.filter((e, i) => i !== index) || [],
     }));
   };
+
+  console.log(productState);
 
   return (
     <Layout>
