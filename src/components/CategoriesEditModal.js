@@ -56,7 +56,8 @@ function CategoriesEditModal({
         };
       });
     } else if (name === "parentId") {
-      let { attributeList } = categoriesState.find((e) => e?._id === value);
+      let { attributeList } =
+        categoriesState.find((e) => e?._id === value) || [];
 
       setcategoriesDetails((prev) => ({
         ...prev,
