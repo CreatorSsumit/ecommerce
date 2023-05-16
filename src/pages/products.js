@@ -75,7 +75,6 @@ function Products(props) {
             <td className="p-4 rounded-r ">Action</td>
           </thead>
           <tbody className="mt-10">
-            {console.log(productDataMemo)}
             {productDataMemo?.map((data) => (
               <>
                 <tr className="bg-slate-50 my-3">

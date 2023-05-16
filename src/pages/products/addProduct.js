@@ -104,25 +104,6 @@ function addProduct() {
     }));
   };
 
-  const addProperty = () => {
-    var obj = { key: "", value: "" };
-    setLoadingState(true);
-    setproductState((prev) => ({
-      ...prev,
-      propertyList: [...prev?.propertyList, obj],
-    }));
-    setTimeout(() => {
-      setLoadingState(false);
-    }, 1000);
-  };
-
-  const handleDeleteProductList = (index) => {
-    setproductState((prev) => ({
-      ...prev,
-      propertyList: prev?.propertyList?.filter((e, i) => i !== index) || [],
-    }));
-  };
-
   console.log(productState);
 
   return (
@@ -136,8 +117,6 @@ function addProduct() {
         skeletonLoading={loadingState}
         setImagesOrder={setImagesOrder}
         categoriesState={categoriesState}
-        addProperty={addProperty}
-        handleDeleteProductList={handleDeleteProductList}
       />
     </Layout>
   );

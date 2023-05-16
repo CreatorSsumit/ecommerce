@@ -12,38 +12,50 @@ function EditProduct() {
   const router = useRouter();
 
   const loadCategoriesState = () => {
-    axios.get("/api/categories/addCategories").then((e) => {
-      setCategoriesState(e?.data?.reverse());
+    return new Promise((resolve, reject) => {
+      axios.get("/api/categories/addCategories").then((e) => {
+        setCategoriesState(e?.data?.reverse());
+        resolve({ listofCategories: e?.data });
+        console.log(e);
+      });
     });
   };
 
   useEffect(() => {
     if (router.query.editProduct) {
-      loadCategoriesState();
-      axios
-        .get(`/api/products/editProducts/${router.query.editProduct}`)
-        .then(
-          ({
-            data: {
-              productName,
-              productDescription,
-              productPrice,
-              image,
-              categories,
-              propertyList,
-            },
-          }) => {
-            setproductState((prev) => ({
-              ...prev,
-              productName,
-              productDescription,
-              productPrice,
-              image,
-              categories,
-              propertyList,
-            }));
-          }
-        );
+      loadCategoriesState().then((e) => {
+        axios
+          .get(`/api/products/editProducts/${router.query.editProduct}`)
+          .then(
+            ({
+              data: {
+                productName,
+                productDescription,
+                productPrice,
+                image,
+                categories,
+              },
+            }) => {
+              let attributeList =
+                e.listofCategories
+                  .filter((ev) => ev._id === categories)
+                  ?.map((ev) => ev.attributeList) || [];
+
+              console.log(categories, attributeList);
+
+              setproductState((prev) => ({
+                ...prev,
+                productName,
+                productDescription,
+                productPrice,
+                image,
+                categories,
+                propertyList:
+                  (attributeList?.[0] && [...attributeList?.[0]]) || [],
+              }));
+            }
+          );
+      });
     } else {
       return;
     }
@@ -72,12 +84,14 @@ function EditProduct() {
         };
       });
     } else if (name === "categories") {
-      let { attributeList } =
-        categoriesState.find((e) => e?._id === value) || [];
+      let attributeList =
+        categoriesState
+          .filter((e) => e?._id === value)
+          ?.map((ev) => ev.attributeList) || [];
 
       setproductState((prev) => ({
         ...prev,
-        propertyList: attributeList,
+        propertyList: (attributeList?.[0] && [...attributeList?.[0]]) || [],
         [e.target.name]: e.target.value,
       }));
     } else {
@@ -132,18 +146,6 @@ function EditProduct() {
     }));
   };
 
-  const addProperty = () => {
-    var obj = { key: "", value: "" };
-    setLoadingState(true);
-    setproductState((prev) => ({
-      ...prev,
-      propertyList: [...prev?.propertyList, obj],
-    }));
-    setTimeout(() => {
-      setLoadingState(false);
-    }, 1000);
-  };
-
   const handleDeleteProductList = (index) => {
     setproductState((prev) => ({
       ...prev,
@@ -162,7 +164,6 @@ function EditProduct() {
         skeletonLoading={loadingState}
         setImagesOrder={setImagesOrder}
         categoriesState={categoriesState}
-        addProperty={addProperty}
         handleDeleteProductList={handleDeleteProductList}
       />
     </Layout>
