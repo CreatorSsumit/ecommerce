@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/router";
 import { playfairDisplay } from "./Homepage/Landing";
+import Image from "next/image";
 
 function Headers() {
   const { pathname } = useRouter();
@@ -11,7 +12,13 @@ function Headers() {
       className={`w-full bg-slate-50 h-16 flex justify-between px-10 items-center font-semibold text-sm ${playfairDisplay.className}`}
     >
       <div className="">
-        <Link href={"/"}>Logo</Link>
+        <Link href={"/"}>
+          <Image
+            src={require("../public/images/mainlogo.png")}
+            width={70}
+            height={100}
+          />
+        </Link>
       </div>
       <div className="w-80 flex justify-between">
         <Link
