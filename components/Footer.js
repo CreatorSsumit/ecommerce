@@ -1,6 +1,6 @@
 import React from "react";
 import { baseColors } from "@/pages";
-import { playfairDisplay } from "./Landing";
+import { playfairDisplay } from "./Homepage/Landing";
 
 function Footer() {
   return (

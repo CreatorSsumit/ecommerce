@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/router";
-import { playfairDisplay } from "./Landing";
+import { playfairDisplay } from "./Homepage/Landing";
 
 function Headers() {
   const { pathname } = useRouter();
