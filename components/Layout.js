@@ -4,7 +4,7 @@ import Footer from "./Footer";
 
 function Layout({ children }) {
   return (
-    <div className="w-full h-full">
+    <div>
       <Headers />
       {children}
       <Footer />

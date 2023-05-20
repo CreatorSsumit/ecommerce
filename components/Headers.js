@@ -16,15 +16,20 @@ function Headers() {
       <div className="w-80 flex justify-between">
         <Link
           className={`hover:font-normal ${
-            pathname.includes("/")
-              ? "border-b-2 border-cyan-700 font-extrabold"
-              : ""
+            pathname === "/" ? "border-b-2 border-cyan-700 font-extrabold" : ""
           }`}
           href={"/"}
         >
           Home
         </Link>
-        <Link className="hover:font-normal" href={"/products"}>
+        <Link
+          className={`hover:font-normal ${
+            pathname.includes("/products")
+              ? "border-b-2 border-cyan-700 font-extrabold"
+              : ""
+          }`}
+          href={"/products"}
+        >
           Products
         </Link>
         <Link className="hover:font-normal" href={"/categories"}>
