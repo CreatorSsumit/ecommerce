@@ -31,10 +31,10 @@ function AboutUs() {
         <h6
           className={`${playfairDisplay.className} text-3xl font-semibold text-center pt-10 flex flex-col`}
         >
-          <span className=" pb-2 text-8xl text-[#1f2d2c]">
+          <span className=" pb-2 text-8xl ">
             <span ref={el} />
             <span className="text-[#76344C]">NyMaa</span> this
-            <span className="text-[#274a48]"> side</span>
+            <span className="text-[#1f2d2c]"> side</span>
           </span>
 
           <span className="text-sm p-12">

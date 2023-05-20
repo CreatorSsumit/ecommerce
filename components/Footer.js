@@ -14,19 +14,29 @@ function Footer() {
               </h2>
               <nav class="list-none mb-10">
                 <li>
-                  <a class="text-gray-400 hover:text-gray-800">Saree</a>
+                  <a class="text-gray-400 hover:text-gray-100 cursor-pointer">
+                    Saree
+                  </a>
                 </li>
                 <li>
-                  <a class="text-gray-400 hover:text-gray-800">Jewellery</a>
+                  <a class="text-gray-400 hover:text-gray-100 cursor-pointer">
+                    Jewellery
+                  </a>
                 </li>
                 <li>
-                  <a class="text-gray-400 hover:text-gray-800">Lingerie</a>
+                  <a class="text-gray-400 hover:text-gray-100 cursor-pointer">
+                    Lingerie
+                  </a>
                 </li>
                 <li>
-                  <a class="text-gray-400 hover:text-gray-800">Indianwear</a>
+                  <a class="text-gray-400 hover:text-gray-100 cursor-pointer">
+                    Indianwear
+                  </a>
                 </li>
                 <li>
-                  <a class="text-gray-400 hover:text-gray-800">More ...</a>
+                  <a class="text-gray-400 hover:text-gray-100 cursor-pointer">
+                    More ...
+                  </a>
                 </li>
               </nav>
             </div>
@@ -36,19 +46,29 @@ function Footer() {
               </h2>
               <nav class="list-none mb-10">
                 <li>
-                  <a class="text-gray-400 hover:text-gray-800">Women</a>
+                  <a class="text-gray-400 hover:text-gray-100 cursor-pointer">
+                    Women
+                  </a>
                 </li>
                 <li>
-                  <a class="text-gray-400 hover:text-gray-800">Men</a>
+                  <a class="text-gray-400 hover:text-gray-100 cursor-pointer">
+                    Men
+                  </a>
                 </li>
                 <li>
-                  <a class="text-gray-400 hover:text-gray-800">Kids</a>
+                  <a class="text-gray-400 hover:text-gray-100 cursor-pointer">
+                    Kids
+                  </a>
                 </li>
                 <li>
-                  <a class="text-gray-400 hover:text-gray-800">Home</a>
+                  <a class="text-gray-400 hover:text-gray-100 cursor-pointer">
+                    Home
+                  </a>
                 </li>
                 <li>
-                  <a class="text-gray-400 hover:text-gray-800">More ... </a>
+                  <a class="text-gray-400 hover:text-gray-100 cursor-pointer">
+                    More ...{" "}
+                  </a>
                 </li>
               </nav>
             </div>
