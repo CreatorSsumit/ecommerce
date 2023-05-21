@@ -39,7 +39,14 @@ function Headers() {
         >
           Products
         </Link>
-        <Link className="hover:font-normal" href={"/categories"}>
+        <Link
+          className={`hover:font-normal ${
+            pathname.includes("/categories")
+              ? "border-b-2 border-cyan-700 font-extrabold"
+              : ""
+          }`}
+          href={"/categories"}
+        >
           Categories
         </Link>
         <Link className="hover:font-normal" href={"/cart"}>

@@ -4,16 +4,19 @@ import { Roboto_Typo } from "../Homepage/Landing";
 
 function Card() {
   return (
-    <div className="p-4 flex gap-7 w-full border-b-2 relative bg-gray-100">
+    <div className="p-4 flex gap-7 w-full border-b-2 relative bg-gray-50">
       <div className="rounded bg-cover bg-center w-1/3 h-44 overflow-hidden">
         <Image
-          style={{ width: "100%", height: "100%" }}
-          className="bg-slate-700"
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
           src={
             "https://i.pinimg.com/564x/c9/bc/eb/c9bcebace584bd850d5705e3a3bf5158.jpg"
           }
           width={1000}
           height={1000}
+          className="object-contain"
         />
       </div>
       <div className="block">
@@ -24,10 +27,7 @@ function Card() {
           >
             Stunning and ethereal, these so special pants are featured in a
             fluttery, tiered silhouette with lace piecing at the waistband and
-            multilayered tulle design for added shape. High-rise fit Hidden side
-            zip closure Semi-sheer detailing What’s Care FP ? This product was
-            consciously made to reduce our footprint and supports our mission to
-            be a little bit better every day.
+            multilayered tulle design for added shape.
           </h6>
           <h6 className="text-xm text-red-700 my-1">
             <s>3000 $</s>{" "}
