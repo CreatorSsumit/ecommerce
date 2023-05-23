@@ -1,6 +1,7 @@
 import { playfairDisplay } from "@/components/Homepage/Landing";
 import Layout from "@/components/Layout";
 import CategoriesOption from "@/components/categories/categoriesOption";
+
 import React from "react";
 
 function categories() {

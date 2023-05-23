@@ -1,7 +1,6 @@
-import React from "react";
-import Landing from "@/components/Homepage/Landing";
-import Layout from "@/components/Layout";
 import HomePage from "@/components/Homepage/HomePage";
+import Layout from "@/components/Layout";
+import React from "react";
 
 export const IMAGE_LINK_BASE =
   "http://res.cloudinary.com/creatorssumit/image/upload/v1684488094/nextJS";

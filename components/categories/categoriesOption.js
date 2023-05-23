@@ -6,7 +6,7 @@ function CategoriesOption({ name, index }) {
     <button
       className={`w-2/12 h-10 border-2 border-[#76344C] ${side} font-semibold hover:bg-[#76344C] hover:text-white`}
     >
-      Kurtis Kurtas/Tunics
+      {name}
     </button>
   );
 }
