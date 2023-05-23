@@ -150,9 +150,11 @@ function FormLayout({
                     return (
                       <Image
                         key={index}
-                        src={require(`../../../public/uploads/${event}`)}
+                        src={event}
                         className="rounded w-12 h-12"
                         alt={pimage}
+                        width={1000}
+                        height={1000}
                       />
                     );
                   })}

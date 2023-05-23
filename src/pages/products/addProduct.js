@@ -84,12 +84,13 @@ function addProduct() {
         data.append("file", file);
       }
       axios.post("/api/products/uploadFile", data).then((e) => {
+        console.log(e);
         setTimeout(() => {
           setproductState((prev) => ({
             ...prev,
             image: prev?.image?.length
-              ? [...prev?.image, e.data.filename]
-              : [e.data.filename],
+              ? [...prev?.image, e.data.url]
+              : [e.data.url],
           }));
           setLoadingState(false);
         }, 1000);

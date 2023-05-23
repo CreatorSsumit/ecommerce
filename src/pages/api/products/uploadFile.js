@@ -1,5 +1,8 @@
 import MongooseConnect from "@/pages/mongo_config/mongoose";
 import multer from "multer";
+import cloudinary from "../cloudinaryConfig/cloudinary";
+import DatauriParser from "datauri/parser";
+import path from "path";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -34,9 +37,20 @@ function runMiddleware(req, res, fn) {
 
 const handler = async (req, res) => {
   const { method } = req;
+  const parser = new DatauriParser();
   await MongooseConnect();
   await runMiddleware(req, res, multerUpload.single("file"));
-  res.json(req.file);
+
+  const { path } = req.file;
+
+  const uploadedImageResponse = await cloudinary.uploader.upload(
+    path,
+    () => "nextJS",
+    { resource_type: "image", folder: "nextJS" }
+  );
+  console.log(uploadedImageResponse);
+
+  res.json(uploadedImageResponse);
 };
 
 export const config = {
